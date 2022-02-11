@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{9c3591e1-e412-4da1-896b-407a79612bec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Game">
+      <UniqueIdentifier>{0c33c803-cdcb-44c3-8bbf-bf751cfeb4e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{b099ac35-ffe1-4174-9b2a-8b0db2010ce8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Object">
+      <UniqueIdentifier>{f729d158-5f3c-470c-801e-9156a6870d61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\ObjectManager">
+      <UniqueIdentifier>{3ec349d7-b6d5-42d5-99d6-4f420842446e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{b4c6f02a-bf69-4b99-97cc-0364d2bfe163}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\UIObject">
+      <UniqueIdentifier>{ebd85a21-fe39-463a-87d9-ee43266c2b86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\UIManger">
+      <UniqueIdentifier>{c92f9e67-89ab-4e40-a17b-92e08be132d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Canvas">
+      <UniqueIdentifier>{3211b7bc-2091-4b10-a9d5-6aea980ab0d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Image">
+      <UniqueIdentifier>{04920012-0e30-4206-8468-d8be9c8b91a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Text">
+      <UniqueIdentifier>{f2e89e6f-7834-4086-b580-3a5fdabd1d4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Button">
+      <UniqueIdentifier>{9dc846fb-3823-4d41-92b9-42c9c833a91d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\MouseManager">
+      <UniqueIdentifier>{13b4a489-759f-43d5-bc54-4ae4ca088a71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\TextureManager">
+      <UniqueIdentifier>{21983d00-90d0-4d96-a57a-1a73b4be28d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Camera">
+      <UniqueIdentifier>{13fd63cb-280f-4c41-9a3f-3a2926e9d382}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\FontManager">
+      <UniqueIdentifier>{105bf6ea-250c-4772-b6f0-c45ec9f5d259}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\TextureSequence">
+      <UniqueIdentifier>{e34e6c2a-1e8d-4381-91f0-01a9f3d717a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\MovingText">
+      <UniqueIdentifier>{9e69c8e0-b95b-4153-a55c-6eca2fc8a009}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Animation">
+      <UniqueIdentifier>{f921f019-f8eb-441f-86dc-212ac83f7f09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\AnimationClip">
+      <UniqueIdentifier>{919720e4-046b-449f-b45f-df0fadfd708d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{34132554-175d-4c76-99b9-94c8a43d7e5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Grid">
+      <UniqueIdentifier>{2d0e6403-cbfa-4479-be62-248c89d9aacb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GridBlock">
+      <UniqueIdentifier>{73e126f6-782d-4394-864c-aa8cb26edb9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\A%2a">
+      <UniqueIdentifier>{56912074-c8c2-4e73-bb9e-5880fc59ddc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Path">
+      <UniqueIdentifier>{9f205b9c-6bfc-40dc-91d2-32669fef385b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SongSaga.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>System\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>Objects\ObjectManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Objects\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>UI\UIManger</Filter>
+    </ClCompile>
+    <ClCompile Include="UIObject.cpp">
+      <Filter>UI\UIObject</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>System\TextureManager</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseManager.cpp">
+      <Filter>System\MouseManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>System\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="FontManager.cpp">
+      <Filter>System\FontManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>UI\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>UI\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="Canvas.cpp">
+      <Filter>UI\Canvas</Filter>
+    </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>UI\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureSequence.cpp">
+      <Filter>System\TextureSequence</Filter>
+    </ClCompile>
+    <ClCompile Include="MovingText.cpp">
+      <Filter>Objects\MovingText</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>System\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationClip.cpp">
+      <Filter>System\AnimationClip</Filter>
+    </ClCompile>
+    <ClCompile Include="Grid.cpp">
+      <Filter>Game\Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="GridBlock.cpp">
+      <Filter>Game\GridBlock</Filter>
+    </ClCompile>
+    <ClCompile Include="AStar.cpp">
+      <Filter>Game\A%2a</Filter>
+    </ClCompile>
+    <ClCompile Include="Path.cpp">
+      <Filter>Game\Path</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game.h">
+      <Filter>System\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>Objects\ObjectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Objects\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>UI\UIManger</Filter>
+    </ClInclude>
+    <ClInclude Include="UIObject.h">
+      <Filter>UI\UIObject</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>System\TextureManager</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseManager.h">
+      <Filter>System\MouseManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>System\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="FontManager.h">
+      <Filter>System\FontManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>UI\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>UI\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="Canvas.h">
+      <Filter>UI\Canvas</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>UI\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureSequence.h">
+      <Filter>System\TextureSequence</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingText.h">
+      <Filter>Objects\MovingText</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationClip.h">
+      <Filter>System\AnimationClip</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>System\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Grid.h">
+      <Filter>Game\Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="GridBlock.h">
+      <Filter>Game\GridBlock</Filter>
+    </ClInclude>
+    <ClInclude Include="AStar.h">
+      <Filter>Game\A%2a</Filter>
+    </ClInclude>
+    <ClInclude Include="Path.h">
+      <Filter>Game\Path</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
