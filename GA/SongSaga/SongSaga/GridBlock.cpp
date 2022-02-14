@@ -2,6 +2,8 @@
 #include "TextureManager.h"
 #include "MouseManager.h"
 #include "Game.h"
+#include "Camera.h"
+#include "FontManager.h"
 
 GridBlock::GridBlock()
 {
@@ -71,6 +73,34 @@ void GridBlock::Update()
 	}
 }
 
+void GridBlock::Draw(sf::RenderWindow& aWindow)
+{
+	sf::Vector2f tempScale;
+	tempScale.x = mySize.x / mySprite.getTextureRect().width;
+	tempScale.y = mySize.y / mySprite.getTextureRect().height;
+
+	mySprite.setScale(tempScale);
+	mySprite.setPosition(myPosition + Camera::GetVector());
+
+	aWindow.draw(mySprite);
+
+	if (myUI && myValueSet) 
+	{
+		sf::Text tempText;
+		tempText.setFont(*FontManager::Prompt());
+		tempText.setString(std::to_string((int)round(10 * myValue)));
+		tempText.setCharacterSize(16);
+		tempText.setFillColor(sf::Color::Black);
+
+		tempText.setScale(sf::Vector2f(1, 1));
+		sf::FloatRect tempTextRect = tempText.getLocalBounds();
+		tempText.setOrigin(tempTextRect.left + tempTextRect.width / 2.0f, tempTextRect.top + tempTextRect.height / 2.0f);
+		tempText.setPosition(myPosition + Camera::GetVector() + sf::Vector2f(32,32));
+
+		aWindow.draw(tempText);
+	}
+}
+
 void GridBlock::ResetEnd()
 {
 	if (myEndpoint)
@@ -92,14 +122,33 @@ void GridBlock::SetColor(sf::Color aColor)
 	mySprite.setColor(aColor);
 }
 
-void GridBlock::SetValue(float aValue)
+void GridBlock::SetValue(float aValue, float aGCost, float aHCost, sf::Vector2i aDirection)
 {
 	myValue = aValue;
+	myGCost = aGCost;
+	myHCost = aHCost;
+	myDirection = aDirection;
+	myValueSet = true;
 }
 
 float GridBlock::GetValue()
 {
 	return myValue;
+}
+
+float GridBlock::GetGCost()
+{
+	return myGCost;
+}
+
+sf::Vector2i GridBlock::GetDirection()
+{
+	return myDirection;
+}
+
+bool GridBlock::IsSet()
+{
+	return myValueSet;
 }
 
 bool GridBlock::IsActive()

@@ -16,11 +16,13 @@ public:
 	static sf::Texture* EmptyBox();
 	static sf::Texture* Fade();
 	static sf::Texture* FadeMirror();
+	static sf::Texture* Arrow();
 
 private:
 	static sf::Texture* myBox;
 	static sf::Texture* myFade;
 	static sf::Texture* myFadeMirror;
+	static sf::Texture* myArrow;
 };
 
 

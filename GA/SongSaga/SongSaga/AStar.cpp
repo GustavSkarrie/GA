@@ -22,13 +22,13 @@ Path AStar::GetPath(sf::Vector2i aStartPosition, sf::Vector2i aEndPosition, Grid
 	{
 		GridBlock* tempShortest;
 		GridBlock* tempOpenBlock = aGrid.GetGrid(tempOpen[tempOpen.size() - 1]);
-		tempShortest = CheckNeighbors(tempOpen[tempOpen.size() - 1], aEndPosition, tempOpen, tempClosed);
+		tempShortest = CheckNeighbors(tempOpen[tempOpen.size() - 1], aStartPosition, aEndPosition, tempOpen, tempClosed);
 
 		for (size_t i = 0; i < tempOpen.size(); i++)
 		{
 			GridBlock* tempBlock = GetShortest(tempOpen[i], aEndPosition, tempOpen, tempClosed);
 
-			if (tempBlock->GetValue() < tempShortest->GetValue())
+			if (tempShortest == nullptr || tempBlock != nullptr && tempBlock->GetValue() < tempShortest->GetValue())
 				tempShortest = tempBlock;
 		}
 
@@ -36,17 +36,27 @@ Path AStar::GetPath(sf::Vector2i aStartPosition, sf::Vector2i aEndPosition, Grid
 		{
 			GridBlock* tempBlock = GetShortest(tempClosed[i], aEndPosition, tempOpen, tempClosed);
 
-			if (tempBlock->GetValue() < tempShortest->GetValue())
+			if (tempShortest == nullptr || tempBlock != nullptr && tempBlock->GetValue() < tempShortest->GetValue())
 				tempShortest = tempBlock;
 		}
 
 		tempOpen.push_back(sf::Vector2i(tempShortest->GetPosition().x / 64, tempShortest->GetPosition().y / 64));
 	}
 
+	std::vector<sf::Vector2i> tempPath;
+	tempPath.push_back(tempOpen[tempOpen.size() - 1]);
+
+	while (tempPath[tempPath.size() - 1] != aStartPosition)
+	{
+		tempPath.push_back(tempPath[tempPath.size() - 1] - aGrid.GetGrid(tempPath[tempPath.size() - 1])->GetDirection());
+		aGrid.GetGrid(tempPath[tempPath.size() - 1])->SetColor(sf::Color(50, 50, 255));
+	}
+
+
 	return Path();
 }
 
-GridBlock* AStar::CheckNeighbors(sf::Vector2i aPosition, sf::Vector2i aEndPosition, std::vector<sf::Vector2i> aOpen, std::vector<sf::Vector2i> aClosed)
+GridBlock* AStar::CheckNeighbors(sf::Vector2i aPosition, sf::Vector2i aStartPosition, sf::Vector2i aEndPosition, std::vector<sf::Vector2i> aOpen, std::vector<sf::Vector2i> aClosed)
 {
 	sf::Vector2i tempPosition = sf::Vector2i(aPosition.x - 1, aPosition.y - 2);
 	GridBlock* tempBlock = nullptr;
@@ -59,7 +69,7 @@ GridBlock* AStar::CheckNeighbors(sf::Vector2i aPosition, sf::Vector2i aEndPositi
 		{
 			tempPosition.y++;
 
-			if (aPosition == tempPosition || tempPosition.x > myGrid.GetWidth() || tempPosition.y > myGrid.GetHeight() || tempPosition.x < 0 || tempPosition.y < 0 || !myGrid.GetGrid(tempPosition.x, tempPosition.y)->IsActive())
+			if (aPosition == tempPosition || tempPosition.x > myGrid.GetWidth() - 1 || tempPosition.y > myGrid.GetHeight() - 1 || tempPosition.x < 0 || tempPosition.y < 0 || !myGrid.GetGrid(tempPosition.x, tempPosition.y)->IsActive())
 				continue;
 
 			bool tempSkip = false;
@@ -75,16 +85,18 @@ GridBlock* AStar::CheckNeighbors(sf::Vector2i aPosition, sf::Vector2i aEndPositi
 			if (tempSkip)
 				continue;
 
-			float tempFloat = 1 + Game::Length((sf::Vector2f)tempPosition, (sf::Vector2f)aEndPosition);
+			float tempGCost = myGrid.GetGrid(aPosition)->GetGCost() + Game::Length((sf::Vector2f)tempPosition, (sf::Vector2f)aPosition);
+			float tempHCost = Game::Length((sf::Vector2f)tempPosition, (sf::Vector2f)aEndPosition);
 
-			if (x % 2 == 0 && y % 2 == 0)
-				tempFloat += 0.5;
+			//if (x % 2 == 0 && y % 2 == 0)
+			//	tempFloat += 0.5;
 
-			if (tempBlock == nullptr || tempBlock->GetValue() > tempFloat)
-				tempBlock = myGrid.GetGrid(tempPosition.x, tempPosition.y);
+			if (tempBlock == nullptr || tempBlock->GetValue() > tempGCost + tempHCost)
+					tempBlock = myGrid.GetGrid(tempPosition.x, tempPosition.y);
 
+			if (!myGrid.GetGrid(tempPosition.x, tempPosition.y)->IsSet() || myGrid.GetGrid(tempPosition.x, tempPosition.y)->GetValue() > tempGCost + tempHCost)
+				myGrid.GetGrid(tempPosition.x, tempPosition.y)->SetValue(tempGCost + tempHCost, tempGCost, tempHCost, sf::Vector2i(x - 1, y - 1));
 
-			myGrid.GetGrid(tempPosition.x, tempPosition.y)->SetValue(tempFloat);
 			myGrid.GetGrid(tempPosition.x, tempPosition.y)->SetColor(sf::Color(150, 150, 255, 255));
 		}
 
@@ -108,7 +120,7 @@ GridBlock* AStar::GetShortest(sf::Vector2i aPosition, sf::Vector2i aEndPosition,
 		{
 			tempPosition.y++;
 
-			if (aPosition == tempPosition || tempPosition.x > myGrid.GetWidth() || tempPosition.y > myGrid.GetHeight() || tempPosition.x < 0 || tempPosition.y < 0 || !myGrid.GetGrid(tempPosition.x, tempPosition.y)->IsActive())
+			if (aPosition == tempPosition || tempPosition.x > myGrid.GetWidth() - 1 || tempPosition.y > myGrid.GetHeight() - 1 || tempPosition.x < 0 || tempPosition.y < 0 || !myGrid.GetGrid(tempPosition.x, tempPosition.y)->IsActive())
 				continue;
 
 			bool tempSkip = false;
