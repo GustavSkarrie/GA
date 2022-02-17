@@ -1,36 +1,21 @@
-#ifndef ASTAR_HEADER
-#define ASTAR_HEADER
+#ifndef BFS_HEADER
+#define BFS_HEADER
 
 #include "Path.h"
 #include "Grid.h"
-#include <fstream>
 
-static class AStar
+static class BFS
 {
 public:
-	AStar();
-	~AStar();
+	BFS();
+	~BFS();
 
 	static Path GetPath(sf::Vector2i aStartPosition, sf::Vector2i aEndPostion, Grid aGrid);
 	static GridBlock* CheckNeighbors(sf::Vector2i aPosition, sf::Vector2i aStartPosition, sf::Vector2i aEndPosition, std::vector<sf::Vector2i> aOpen, std::vector<sf::Vector2i> aClosed);
 	static GridBlock* GetShortest(sf::Vector2i aPosition, sf::Vector2i aEndPosition, std::vector<sf::Vector2i> aOpen, std::vector<sf::Vector2i> aClosed);
-	static void WriteAverage(std::ostream aFile);
-	static void Reset();
 
-	static void SetLine();
-	static int GetLine();
-	static void AddTime(float aTime);
-	static void AddLength(float aLength);
-	
 private:
 	static Grid myGrid;
-	static int myLine;
-	static float myTime;
-	static float myLength;
-	static float myMaxTime;
-	static float myMinTime;
 };
 
-
-
-#endif // !ASTAR_HEADER
+#endif // !BFS_HEADER

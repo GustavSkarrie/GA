@@ -1,5 +1,8 @@
 #include "Grid.h"
 #include "AStar.h"
+#include "BFS.h"
+#include <iostream>
+#include <fstream>
 
 Grid::Grid()
 {
@@ -52,12 +55,44 @@ void Grid::ResetEnd()
 	}
 }
 
+void Grid::ResetGrid()
+{
+	for (size_t x = 0; x < GetWidth(); x++)
+	{
+		for (size_t y = 0; y < GetHeight(); y++)
+		{
+			myGrid[x][y]->Reset();
+		}
+	}
+}
+
 void Grid::AStar()
 {
+	std::ofstream tempFile;
+
+	tempFile.open("Astar.txt");
+
 	sf::Vector2i tempStart = sf::Vector2i(GetStart()->GetPosition().x / 64, GetStart()->GetPosition().y / 64);
 	sf::Vector2i tempEnd = sf::Vector2i(GetEnd()->GetPosition().x / 64, GetEnd()->GetPosition().y / 64);
 
-	AStar::GetPath(tempStart, tempEnd, *this);
+	Path tempPath = AStar::GetPath(tempStart, tempEnd, *this);
+	AStar::SetLine();
+	tempFile << tempPath.GetTime() << " - " << tempPath.GetLength() << "\n";
+	tempFile.close();
+}
+
+void Grid::BFS()
+{
+	std::ofstream tempFile;
+
+	tempFile.open("BFS.txt");
+
+	sf::Vector2i tempStart = sf::Vector2i(GetStart()->GetPosition().x / 64, GetStart()->GetPosition().y / 64);
+	sf::Vector2i tempEnd = sf::Vector2i(GetEnd()->GetPosition().x / 64, GetEnd()->GetPosition().y / 64);
+
+	Path tempPath = BFS::GetPath(tempStart, tempEnd, *this);
+	tempFile << tempPath.GetTime() << " - " << tempPath.GetLength();
+	tempFile.close();
 }
 
 int Grid::GetHeight()

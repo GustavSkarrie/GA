@@ -22,6 +22,9 @@ public:
 	static void Wall();
 	static void StartPoint();
 	static void Endpoint();
+	static void AStar();
+	static void BFS();
+	static void Reset();
 	static void Start();
 
 	static sf::Vector2f WindowPosition(Direction aDirection);

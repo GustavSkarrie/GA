@@ -13,6 +13,8 @@
 #include "Camera.h"
 #include "Grid.h"
 #include "AStar.h"
+#include <iostream>
+#include <fstream>
 
 Game::Game()
 {
@@ -42,7 +44,9 @@ void Game::GameLoop()
     myEditorUI->AddObject(new Button(&Wall, "Wall", sf::Vector2f(10, 10), sf::Vector2f(140, 40), 3, TextureManager::Fade(), true));
     myEditorUI->AddObject(new Button(&StartPoint, "Start Point", sf::Vector2f(10, 60), sf::Vector2f(140, 40), 3, TextureManager::Fade(), true));
     myEditorUI->AddObject(new Button(&Endpoint, "End Point", sf::Vector2f(10, 110), sf::Vector2f(140, 40), 3, TextureManager::Fade(), true));
-    myEditorUI->AddObject(new Button(&Start, "Start", sf::Vector2f(10, 160), sf::Vector2f(140, 40), 3, TextureManager::Fade(), true));
+    myEditorUI->AddObject(new Button(&AStar, "A*", sf::Vector2f(10, 160), sf::Vector2f(140, 40), 3, TextureManager::Fade(), true));
+    myEditorUI->AddObject(new Button(&BFS, "BFS", sf::Vector2f(10, 210), sf::Vector2f(140, 40), 3, TextureManager::Fade(), true));
+    myEditorUI->AddObject(new Button(&Reset, "Reset Text", sf::Vector2f(10, 260), sf::Vector2f(140, 40), 3, TextureManager::Fade(), true));
 
     while (tempWindow.isOpen())
     {
@@ -104,6 +108,27 @@ void Game::Endpoint()
 {
     myMode = EditorMode::Endpoint;
     myEditorUI->ResetButtons();
+}
+
+void Game::AStar()
+{
+    myGrid.AStar();
+}
+
+void Game::BFS()
+{
+    myGrid.BFS();
+}
+
+void Game::Reset()
+{
+    std::ofstream tempFile;
+
+    tempFile.open("Astar.txt", std::ofstream::out | std::ofstream::trunc);
+    tempFile.close();
+
+    tempFile.open("BFS.txt", std::ofstream::out | std::ofstream::trunc);
+    tempFile.close();
 }
 
 void Game::Start()

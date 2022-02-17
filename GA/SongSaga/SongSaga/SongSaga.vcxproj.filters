@@ -76,9 +76,6 @@
     <Filter Include="Game">
       <UniqueIdentifier>{34132554-175d-4c76-99b9-94c8a43d7e5d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Grid">
-      <UniqueIdentifier>{2d0e6403-cbfa-4479-be62-248c89d9aacb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\GridBlock">
       <UniqueIdentifier>{73e126f6-782d-4394-864c-aa8cb26edb9b}</UniqueIdentifier>
     </Filter>
@@ -87,6 +84,12 @@
     </Filter>
     <Filter Include="Game\Path">
       <UniqueIdentifier>{9f205b9c-6bfc-40dc-91d2-32669fef385b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\BFS">
+      <UniqueIdentifier>{40855b20-8b0e-44e6-b1ae-cba7ae02110b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Grid">
+      <UniqueIdentifier>{2d0e6403-cbfa-4479-be62-248c89d9aacb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -156,6 +159,9 @@
     <ClCompile Include="Path.cpp">
       <Filter>Game\Path</Filter>
     </ClCompile>
+    <ClCompile Include="BFS.cpp">
+      <Filter>Game\BFS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -220,6 +226,9 @@
     </ClInclude>
     <ClInclude Include="Path.h">
       <Filter>Game\Path</Filter>
+    </ClInclude>
+    <ClInclude Include="BFS.h">
+      <Filter>Game\BFS</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

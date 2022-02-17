@@ -7,13 +7,15 @@ class Path
 {
 public:
 	Path();
-	Path(float aTime, std::vector<sf::Vector2f> aPath);
+	Path(float aTime, std::vector<sf::Vector2i> aPath);
 	~Path();
+
+	float GetTime();
+	float GetLength();
 
 private:
 	float myTime;
-	std::vector<sf::Vector2f> myPath;
-	float myLength;
+	std::vector<sf::Vector2i> myPath;
 };
 
 

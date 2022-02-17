@@ -1,15 +1,15 @@
-#include "AStar.h"
+#include "BFS.h"
 #include "Game.h"
 
-AStar::AStar()
+BFS::BFS()
 {
 }
 
-AStar::~AStar()
+BFS::~BFS()
 {
 }
 
-Path AStar::GetPath(sf::Vector2i aStartPosition, sf::Vector2i aEndPosition, Grid aGrid)
+Path BFS::GetPath(sf::Vector2i aStartPosition, sf::Vector2i aEndPosition, Grid aGrid)
 {
 	aGrid.ResetGrid();
 	float tempTime = Game::GameTime();
@@ -54,11 +54,11 @@ Path AStar::GetPath(sf::Vector2i aStartPosition, sf::Vector2i aEndPosition, Grid
 	}
 
 	float tempEndTime = Game::GameTime() - tempTime;
-	
+
 	return Path(tempEndTime, tempPath);
 }
 
-GridBlock* AStar::CheckNeighbors(sf::Vector2i aPosition, sf::Vector2i aStartPosition, sf::Vector2i aEndPosition, std::vector<sf::Vector2i> aOpen, std::vector<sf::Vector2i> aClosed)
+GridBlock* BFS::CheckNeighbors(sf::Vector2i aPosition, sf::Vector2i aStartPosition, sf::Vector2i aEndPosition, std::vector<sf::Vector2i> aOpen, std::vector<sf::Vector2i> aClosed)
 {
 	sf::Vector2i tempPosition = sf::Vector2i(aPosition.x - 1, aPosition.y - 2);
 	GridBlock* tempBlock = nullptr;
@@ -87,17 +87,16 @@ GridBlock* AStar::CheckNeighbors(sf::Vector2i aPosition, sf::Vector2i aStartPosi
 			if (tempSkip)
 				continue;
 
-			float tempGCost = myGrid.GetGrid(aPosition)->GetGCost() + Game::Length((sf::Vector2f)tempPosition, (sf::Vector2f)aPosition);
-			float tempHCost = Game::Length((sf::Vector2f)tempPosition, (sf::Vector2f)aEndPosition);
+			float tempCost = Game::Length((sf::Vector2f)tempPosition, (sf::Vector2f)aEndPosition);
 
 			//if (x % 2 == 0 && y % 2 == 0)
 			//	tempFloat += 0.5;
 
-			if (tempBlock == nullptr || tempBlock->GetValue() > tempGCost + tempHCost)
-					tempBlock = myGrid.GetGrid(tempPosition.x, tempPosition.y);
+			if (tempBlock == nullptr || tempBlock->GetValue() > tempCost)
+				tempBlock = myGrid.GetGrid(tempPosition.x, tempPosition.y);
 
-			if (!myGrid.GetGrid(tempPosition.x, tempPosition.y)->IsSet() || myGrid.GetGrid(tempPosition.x, tempPosition.y)->GetValue() > tempGCost + tempHCost)
-				myGrid.GetGrid(tempPosition.x, tempPosition.y)->SetValue(tempGCost + tempHCost, tempGCost, tempHCost, sf::Vector2i(x - 1, y - 1));
+			if (!myGrid.GetGrid(tempPosition.x, tempPosition.y)->IsSet() || myGrid.GetGrid(tempPosition.x, tempPosition.y)->GetValue() > tempCost)
+				myGrid.GetGrid(tempPosition.x, tempPosition.y)->SetValue(tempCost, tempCost, tempCost, sf::Vector2i(x - 1, y - 1));
 
 			myGrid.GetGrid(tempPosition.x, tempPosition.y)->SetColor(sf::Color(150, 150, 255, 255));
 		}
@@ -109,7 +108,7 @@ GridBlock* AStar::CheckNeighbors(sf::Vector2i aPosition, sf::Vector2i aStartPosi
 	return tempBlock;
 }
 
-GridBlock* AStar::GetShortest(sf::Vector2i aPosition, sf::Vector2i aEndPosition, std::vector<sf::Vector2i> aOpen, std::vector<sf::Vector2i> aClosed)
+GridBlock* BFS::GetShortest(sf::Vector2i aPosition, sf::Vector2i aEndPosition, std::vector<sf::Vector2i> aOpen, std::vector<sf::Vector2i> aClosed)
 {
 	sf::Vector2i tempPosition = sf::Vector2i(aPosition.x - 1, aPosition.y - 2);
 	GridBlock* tempBlock = nullptr;
@@ -150,43 +149,4 @@ GridBlock* AStar::GetShortest(sf::Vector2i aPosition, sf::Vector2i aEndPosition,
 	return tempBlock;
 }
 
-void AStar::WriteAverage(std::ostream aFile)
-{
-	aFile.seekp(myLine);
-	aFile << "Avr Time: " << (myTime / 1000) << " -  Avr Length: " << (myLength / 1000) << " - Max Time: " << myMaxTime << " - Min Time: " << myMinTime;
-}
-
-void AStar::Reset()
-{
-	myTime = 0;
-	myLength = 0;
-	myMaxTime = 0;
-	myMinTime = 1000000;
-}
-
-void AStar::SetLine()
-{
-	myLine++;
-}
-
-int AStar::GetLine()
-{
-	return myLine;
-}
-
-void AStar::AddTime(float aTime)
-{
-	myTime += aTime;
-}
-
-void AStar::AddLength(float aLength)
-{
-	myLength += aLength;
-}
-
-Grid AStar::myGrid;
-int AStar::myLine = 0;
-float AStar::myTime = 0;
-float AStar::myLength = 0;
-float AStar::myMaxTime = 0;
-float AStar::myMinTime = 1000000;
+Grid BFS::myGrid;

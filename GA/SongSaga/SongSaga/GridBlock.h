@@ -15,6 +15,7 @@ public:
 
 	void ResetEnd();
 	void ResetStart();
+	void Reset();
 
 	void SetColor(sf::Color aColor);
 	void SetValue(float aValue, float aGCost, float aHCost, sf::Vector2i aDirection);

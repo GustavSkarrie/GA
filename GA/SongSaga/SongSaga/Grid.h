@@ -2,6 +2,8 @@
 #define GRID_HEADER
 
 #include "GridBlock.h"
+#include <iostream>
+#include <fstream>
 
 class Grid
 {
@@ -12,7 +14,10 @@ public:
 
 	void ResetStart();
 	void ResetEnd();
+	void ResetGrid();
+
 	void AStar();
+	void BFS();
 
 	int GetHeight();
 	int GetWidth();
@@ -26,6 +31,8 @@ public:
 private:
 	sf::Vector2i mySize;
 	std::vector<std::vector<GridBlock*>> myGrid;
+	std::ostream myAStar;
+	std::ostream myBFS;
 };
 
 

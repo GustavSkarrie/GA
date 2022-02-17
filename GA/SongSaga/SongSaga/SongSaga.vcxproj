@@ -148,6 +148,7 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AnimationClip.cpp" />
     <ClCompile Include="AStar.cpp" />
+    <ClCompile Include="BFS.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Canvas.cpp" />
@@ -172,6 +173,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AnimationClip.h" />
     <ClInclude Include="AStar.h" />
+    <ClInclude Include="BFS.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Canvas.h" />

@@ -117,9 +117,20 @@ void GridBlock::ResetStart()
 	myStartpoint = false;
 }
 
+void GridBlock::Reset()
+{
+	if (myActive && !myEndpoint && !myStartpoint)
+		mySprite.setColor(sf::Color(255, 255, 255, 255));
+
+	myValueSet = false;
+	myValue = 0;
+	myDirection = sf::Vector2i(0, 0);
+}
+
 void GridBlock::SetColor(sf::Color aColor)
 {
-	mySprite.setColor(aColor);
+	if (!myEndpoint && !myStartpoint)
+		mySprite.setColor(aColor);
 }
 
 void GridBlock::SetValue(float aValue, float aGCost, float aHCost, sf::Vector2i aDirection)
