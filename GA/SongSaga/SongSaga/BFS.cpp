@@ -149,4 +149,41 @@ GridBlock* BFS::GetShortest(sf::Vector2i aPosition, sf::Vector2i aEndPosition, s
 	return tempBlock;
 }
 
+void BFS::WriteAverage()
+{
+	std::ofstream tempFile;
+
+	tempFile.open("BFS.txt", std::ios::app);
+
+	tempFile << "Avr Time: " << (myTime / 1000) << " -  Avr Length: " << (myLength / 1000) << " - Max Time: " << myMaxTime << " - Min Time: " << myMinTime;
+}
+
+void BFS::Reset()
+{
+	myTime = 0;
+	myLength = 0;
+	myMaxTime = 0;
+	myMinTime = 1000000;
+}
+
+void BFS::AddTime(float aTime)
+{
+	myTime += aTime;
+
+	if (aTime > myMaxTime)
+		myMaxTime = aTime;
+
+	if (aTime < myMinTime)
+		myMinTime = aTime;
+}
+
+void BFS::AddLength(float aLength)
+{
+	myLength += aLength;
+}
+
 Grid BFS::myGrid;
+float BFS::myTime = 0;
+float BFS::myLength = 0;
+float BFS::myMaxTime = 0;
+float BFS::myMinTime = 1000000;

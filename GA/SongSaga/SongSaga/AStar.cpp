@@ -150,10 +150,13 @@ GridBlock* AStar::GetShortest(sf::Vector2i aPosition, sf::Vector2i aEndPosition,
 	return tempBlock;
 }
 
-void AStar::WriteAverage(std::ostream aFile)
+void AStar::WriteAverage()
 {
-	aFile.seekp(myLine);
-	aFile << "Avr Time: " << (myTime / 1000) << " -  Avr Length: " << (myLength / 1000) << " - Max Time: " << myMaxTime << " - Min Time: " << myMinTime;
+	std::ofstream tempFile;
+
+	tempFile.open("Astar.txt", std::ios::app);
+
+	tempFile << "Avr Time: " << (myTime / 1000) << " -  Avr Length: " << (myLength / 1000) << " - Max Time: " << myMaxTime << " - Min Time: " << myMinTime;
 }
 
 void AStar::Reset()
@@ -164,19 +167,15 @@ void AStar::Reset()
 	myMinTime = 1000000;
 }
 
-void AStar::SetLine()
-{
-	myLine++;
-}
-
-int AStar::GetLine()
-{
-	return myLine;
-}
-
 void AStar::AddTime(float aTime)
 {
 	myTime += aTime;
+
+	if (aTime > myMaxTime)
+		myMaxTime = aTime;
+
+	if (aTime < myMinTime)
+		myMinTime = aTime;
 }
 
 void AStar::AddLength(float aLength)
@@ -185,7 +184,6 @@ void AStar::AddLength(float aLength)
 }
 
 Grid AStar::myGrid;
-int AStar::myLine = 0;
 float AStar::myTime = 0;
 float AStar::myLength = 0;
 float AStar::myMaxTime = 0;

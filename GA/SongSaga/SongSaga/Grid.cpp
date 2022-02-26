@@ -1,6 +1,7 @@
 #include "Grid.h"
 #include "AStar.h"
 #include "BFS.h"
+#include "Game.h"
 #include <iostream>
 #include <fstream>
 
@@ -70,14 +71,15 @@ void Grid::AStar()
 {
 	std::ofstream tempFile;
 
-	tempFile.open("Astar.txt");
+	tempFile.open("Astar.txt", std::ios::app);
 
 	sf::Vector2i tempStart = sf::Vector2i(GetStart()->GetPosition().x / 64, GetStart()->GetPosition().y / 64);
 	sf::Vector2i tempEnd = sf::Vector2i(GetEnd()->GetPosition().x / 64, GetEnd()->GetPosition().y / 64);
 
 	Path tempPath = AStar::GetPath(tempStart, tempEnd, *this);
-	AStar::SetLine();
 	tempFile << tempPath.GetTime() << " - " << tempPath.GetLength() << "\n";
+	AStar::AddLength(tempPath.GetLength());
+	AStar::AddTime(tempPath.GetTime());
 	tempFile.close();
 }
 
@@ -85,14 +87,34 @@ void Grid::BFS()
 {
 	std::ofstream tempFile;
 
-	tempFile.open("BFS.txt");
+	tempFile.open("BFS.txt", std::ios::app);
 
 	sf::Vector2i tempStart = sf::Vector2i(GetStart()->GetPosition().x / 64, GetStart()->GetPosition().y / 64);
 	sf::Vector2i tempEnd = sf::Vector2i(GetEnd()->GetPosition().x / 64, GetEnd()->GetPosition().y / 64);
 
 	Path tempPath = BFS::GetPath(tempStart, tempEnd, *this);
-	tempFile << tempPath.GetTime() << " - " << tempPath.GetLength();
+	tempFile << tempPath.GetTime() << " - " << tempPath.GetLength() << "\n";
+	BFS::AddLength(tempPath.GetLength());
+	BFS::AddTime(tempPath.GetTime());
 	tempFile.close();
+}
+
+void Grid::Start()
+{
+	Game::Reset();
+	AStar::Reset();
+	BFS::Reset();
+
+	for (size_t i = 0; i < 2000; i++)
+	{
+		if (i % 2 == 0)
+			BFS();
+		else
+			AStar();
+	}
+
+	AStar::WriteAverage();
+	BFS::WriteAverage();
 }
 
 int Grid::GetHeight()

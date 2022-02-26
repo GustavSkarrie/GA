@@ -47,6 +47,8 @@ void Game::GameLoop()
     myEditorUI->AddObject(new Button(&AStar, "A*", sf::Vector2f(10, 160), sf::Vector2f(140, 40), 3, TextureManager::Fade(), true));
     myEditorUI->AddObject(new Button(&BFS, "BFS", sf::Vector2f(10, 210), sf::Vector2f(140, 40), 3, TextureManager::Fade(), true));
     myEditorUI->AddObject(new Button(&Reset, "Reset Text", sf::Vector2f(10, 260), sf::Vector2f(140, 40), 3, TextureManager::Fade(), true));
+    myEditorUI->AddObject(new Button(&Start, "Run", sf::Vector2f(10, 310), sf::Vector2f(140, 40), 3, TextureManager::Fade(), true));
+
 
     while (tempWindow.isOpen())
     {
@@ -133,7 +135,7 @@ void Game::Reset()
 
 void Game::Start()
 {
-    myGrid.AStar();
+    myGrid.Start();
 }
 
 sf::Vector2f Game::WindowPosition(Direction aDirection)

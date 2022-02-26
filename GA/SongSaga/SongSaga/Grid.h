@@ -18,6 +18,7 @@ public:
 
 	void AStar();
 	void BFS();
+	void Start();
 
 	int GetHeight();
 	int GetWidth();
@@ -31,8 +32,6 @@ public:
 private:
 	sf::Vector2i mySize;
 	std::vector<std::vector<GridBlock*>> myGrid;
-	std::ostream myAStar;
-	std::ostream myBFS;
 };
 
 
